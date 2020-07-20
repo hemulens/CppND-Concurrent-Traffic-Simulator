@@ -36,10 +36,8 @@ void TrafficLight::waitForGreen() {
   // runs and repeatedly calls the receive function on the message queue.
   // Once it receives TrafficLightPhase::green, the method returns.
   while (true) {
-    // CPU takes a short nap
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
     // Checking current traffic light phase
-    TrafficLightPhase msg = _msgQueue->receive();
+    TrafficLightPhase msg = _msgQueue->receive();  // While loop pauses and waits for a message –> np need to insert a "sleep_for"
     if (msg == TrafficLightPhase::green) {
       return;
     }
